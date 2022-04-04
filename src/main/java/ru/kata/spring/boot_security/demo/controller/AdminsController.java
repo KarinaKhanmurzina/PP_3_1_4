@@ -4,9 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import ru.kata.spring.boot_security.demo.models.Role;
 import ru.kata.spring.boot_security.demo.models.User;
 import ru.kata.spring.boot_security.demo.service.RoleService;
 import ru.kata.spring.boot_security.demo.service.UserService;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("/admin")
@@ -30,12 +34,17 @@ public class AdminsController {
     @GetMapping("/{id}/edit")
     public String edit(@PathVariable("id") int id, Model model) {
         model.addAttribute("user", userService.getUserById(id));
-        model.addAttribute("roles", roleService.getAll());
+        model.addAttribute("rolesList", roleService.getAll());
         return "edit";
     }
 
     @PatchMapping("/{id}")
-    public String update(@ModelAttribute("user") User user, @PathVariable("id") int id) {
+    public String update(@ModelAttribute("user") User user, @PathVariable("id") int id, @RequestParam String[] roles1) {
+        List<Role> listroles = new ArrayList<>();
+        for (String s : roles1) {
+            listroles.add(roleService.getByName(s));
+        }
+        user.setRoles(listroles);
         userService.updateUser(user);
         return "redirect:/admin";
     }
@@ -49,11 +58,17 @@ public class AdminsController {
     @GetMapping("/new")
     public String newUser(Model model) {
         model.addAttribute("user", new User());
+        model.addAttribute("rolesList", roleService.getAll());
         return "new";
     }
 
     @PostMapping
-    public String create(@ModelAttribute("user") User user) {
+    public String create(@ModelAttribute("user") User user, @RequestParam String[] roles1) {
+        List<Role> listroles = new ArrayList<>();
+        for (String s : roles1) {
+            listroles.add(roleService.getByName(s));
+        }
+        user.setRoles(listroles);
         userService.addUser(user);
         return "redirect:/admin";
     }

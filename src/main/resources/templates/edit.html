@@ -16,9 +16,24 @@
     <input type="text" th:field="*{lastName}" id="LastName">
     <br/>
     <br/>
+    <label for="username">User name: </label>
+    <input type="text" th:field="*{username}" id="username">
+    <br/>
+    <br/>
+    <label for="password">Password: </label>
+    <input type="password" th:field="*{password}" id="password">
+    <br/>
+    <br/>
+
+    <select multiple name="roles1">
+        <option th:each="role:${rolesList}" th:value="${role.getName()}"
+                th:text="${role}"></option>
+    </select>
+
     <input type="submit" value="Update">
     <br/>
     <br/>
+
     <form th:action="@{/logout}" method="post">
         <input type="submit" value="Log out"/>
     </form>

@@ -13,6 +13,7 @@ import java.util.Objects;
 public class User implements UserDetails {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
 
@@ -28,7 +29,7 @@ public class User implements UserDetails {
     @Column(name = "password")
     private String password;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinTable(name = "users_role",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
@@ -133,11 +134,11 @@ public class User implements UserDetails {
         if (this == o) return true;
         if (!(o instanceof User)) return false;
         User user = (User) o;
-        return Objects.equals(getId(), user.getId());
+        return getId() == user.getId();
     }
 
     @Override
     public int hashCode() {
-        return getClass().hashCode();
+        return Objects.hash(getId());
     }
 }

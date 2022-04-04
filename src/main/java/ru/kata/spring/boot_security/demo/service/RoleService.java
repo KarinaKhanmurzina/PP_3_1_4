@@ -7,7 +7,7 @@ import java.util.List;
 public interface RoleService {
     List<Role> getAll();
 
-    List<Role> getByName(List<String> name);
+    Role getByName(String name);
 
     void saveRole(Role role);
 }
