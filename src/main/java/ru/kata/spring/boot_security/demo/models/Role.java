@@ -10,13 +10,6 @@ import java.util.Set;
 @Table(name = "roles")
 public class Role implements GrantedAuthority {
 
-    @Override
-    public String toString() {
-        return "Role{" +
-                "name='" + name + '\'' + id +
-                '}';
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -63,5 +56,10 @@ public class Role implements GrantedAuthority {
     @Override
     public int hashCode() {
         return Objects.hash(getId());
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }

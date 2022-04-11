@@ -12,7 +12,7 @@ import java.util.Set;
 //хэндлер, содержащий в себе алгоритм действий при успешной аутентификации
 @Component
 public class LoginSuccessHandler implements AuthenticationSuccessHandler {
-    // Spring Security использует объект Authentication, пользователя авторизованной сессии
+    //Spring Security использует объект Authentication, пользователя авторизованной сессии
     @Override
     public void onAuthenticationSuccess(
             HttpServletRequest httpServletRequest,

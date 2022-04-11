@@ -23,6 +23,9 @@ public class User implements UserDetails {
     @Column(name = "lastname")
     private String lastname;
 
+    @Column(name = "age")
+    private int age;
+
     @Column(name = "login")
     private String username;
 
@@ -38,12 +41,21 @@ public class User implements UserDetails {
     public User() {
     }
 
-    public User(String name, String lastname, String username, String password, List<Role> roles) {
+    public User(String name, String lastname, String username, String password, List<Role> roles, int age) {
         this.name = name;
         this.lastname = lastname;
         this.username = username;
         this.password = password;
+        this.age = age;
         this.roles = roles;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
     }
 
     public long getId() {
@@ -60,14 +72,6 @@ public class User implements UserDetails {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getLastName() {
-        return lastname;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastname = lastName;
     }
 
     public String getLastname() {
@@ -127,6 +131,11 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    //
+    public boolean hasRole (Role role) {
+        return roles.contains(role);
     }
 
     @Override

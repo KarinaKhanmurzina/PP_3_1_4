@@ -21,7 +21,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private final UserDetailsService userDetailsService;
 
     @Autowired
-    public WebSecurityConfig(LoginSuccessHandler successUserHandler, @Qualifier("PasswordEncoder") PasswordEncoder passwordEncoder,
+    public WebSecurityConfig(LoginSuccessHandler successUserHandler,
+                             @Qualifier("PasswordEncoder") PasswordEncoder passwordEncoder,
                              @Qualifier("UserDetailsService") UserDetailsService userDetailsService) {
         this.successUserHandler = successUserHandler;
         this.passwordEncoder = passwordEncoder;
@@ -41,13 +42,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 //каждый запрос должен быть аутентиф-н
                 .authenticated()
                 .and()
-                .formLogin()
-                .successHandler(successUserHandler)
-                .loginPage("/login")
-                .permitAll()
+                    .formLogin()
+                    .successHandler(successUserHandler)
+                    .loginPage("/login")
+                    .permitAll()
                 .and()
-                .logout()
-                .permitAll();
+                    .logout()
+                    .permitAll();
     }
 
     @Override
@@ -55,11 +56,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         auth
                 .userDetailsService(userDetailsService)
                 .passwordEncoder(passwordEncoder);
-
     }
 
-    //DaoAuthenticationProvider — это простой поставщик аутентификации, который использует объект доступа к данным (DAO)
-//для извлечения информации о пользователе из реляционной базы данных
+//DaoAuthenticationProvider — это простой поставщик аутентификации, который использует объект доступа к данным (DAO)
+//для извлечения информации о пользователе из реляционной БД
     @Bean
     public DaoAuthenticationProvider daoAuthenticationProvider() {
         DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
