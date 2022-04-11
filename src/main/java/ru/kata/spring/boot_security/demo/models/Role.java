@@ -60,6 +60,7 @@ public class Role implements GrantedAuthority {
 
     @Override
     public String toString() {
+//        return (name.equals("ROLE-ADMIN")) ? "ADMIN" : (name.equals("ROLE-User")) ? "USER" : "роль не существует";
         return name;
     }
 }

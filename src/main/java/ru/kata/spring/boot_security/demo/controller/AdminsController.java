@@ -36,6 +36,13 @@ public class AdminsController {
         return "admin";
     }
 
+//    @GetMapping("/{id}/edit")
+//    public String edit(@PathVariable("id") int id, Model model) {
+//        model.addAttribute("user", userService.getUserById(id));
+//        model.addAttribute("rolesList", roleService.getAll());
+//        return "admin";
+//    }
+
     @PatchMapping("/update/{id}")
     public String update(@ModelAttribute("user") User user,
                          @PathVariable("id") int id,
@@ -54,6 +61,17 @@ public class AdminsController {
         userService.deleteUserById(id);
         return "redirect:/admin";
     }
+
+//    @PostMapping
+//    public String create(@ModelAttribute("user") User user, @RequestParam String[] roles1) {
+//        List<Role> listroles = new ArrayList<>();
+//        for (String s : roles1) {
+//            listroles.add(roleService.getByName(s));
+//        }
+//        user.setRoles(listroles);
+//        userService.addUser(user);
+//        return "redirect:/admin";
+//    }
 
     @PostMapping("/save")
     public String save(@ModelAttribute("user") User user, @RequestParam String[] roles1) {
