@@ -41,6 +41,10 @@ public class Role implements GrantedAuthority {
         return name;
     }
 
+    public String getSimpleName() {
+        return name.replace("ROLE_", "");
+    }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -60,7 +64,6 @@ public class Role implements GrantedAuthority {
 
     @Override
     public String toString() {
-//        return (name.equals("ROLE-ADMIN")) ? "ADMIN" : (name.equals("ROLE-User")) ? "USER" : "роль не существует";
         return name;
     }
 }

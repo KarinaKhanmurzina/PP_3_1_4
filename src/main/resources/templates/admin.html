@@ -18,7 +18,7 @@
         <!--мэйл с ролью-->
         <strong><a th:text="${currentUser.getUsername()}">...</a></strong>
         <span class="text-start">with roles:
-            <a th:each="role : ${currentUser.getRoles()}" th:text="${role}"></a>
+            <a th:each="role : ${currentUser.getRoles()}" th:text="${role.getSimpleName() + ' '}"></a>
         </span>
     </span>
     <!--выйти-->
@@ -83,7 +83,7 @@
                                     <td th:utext="${user.getUsername()}">...</td>
                                     <td>
                                         <div th:each="role : ${user.getRoles()}">
-                                            <div th:utext="${role.getName()}"></div>
+                                            <div th:utext="${role.getSimpleName()}"></div>
                                         </div>
                                     </td>
                                     <!--кнопка edit-->

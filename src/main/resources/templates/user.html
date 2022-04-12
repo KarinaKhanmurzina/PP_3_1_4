@@ -70,7 +70,7 @@
                             <td th:utext="${user.getUsername()}">...</td>
                             <td>
                                 <div th:each="role : ${user.getRoles()}">
-                                    <div th:utext="${role.getName()}"></div>
+                                    <div th:utext="${role.getSimpleName()}"></div>
                                 </div>
                             </td>
                         </tr>
