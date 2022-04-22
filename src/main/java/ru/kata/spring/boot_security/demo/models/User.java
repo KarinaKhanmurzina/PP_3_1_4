@@ -133,7 +133,6 @@ public class User implements UserDetails {
         return true;
     }
 
-    //
     public boolean hasRole (Role role) {
         return roles.contains(role);
     }
