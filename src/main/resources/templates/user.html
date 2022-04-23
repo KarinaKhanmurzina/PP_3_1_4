@@ -62,18 +62,6 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td th:utext="${user.getId()}">...</td>
-                            <td th:utext="${user.getName()}">...</td>
-                            <td th:utext="${user.getLastname()}">...</td>
-                            <td th:utext="${user.getAge()}">...</td>
-                            <td th:utext="${user.getUsername()}">...</td>
-                            <td>
-                                <div th:each="role : ${user.getRoles()}">
-                                    <div th:utext="${role.getSimpleName()}"></div>
-                                </div>
-                            </td>
-                        </tr>
                         </tbody>
                     </table>
                 </div>
@@ -92,5 +80,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+<script src="../static/user.js"></script>
 </body>
 </html>

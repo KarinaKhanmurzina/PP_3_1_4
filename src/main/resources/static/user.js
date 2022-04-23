@@ -1,5 +1,5 @@
 const url = 'http://localhost:8080/api/users/'
-const userText = document.querySelector('#userTable tbody')
+const userText = document.querySelector('#oneUser tbody')
 
 const showOneUser = (current_user) => {
     userText.innerHTML = `
